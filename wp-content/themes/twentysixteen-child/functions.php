@@ -23,32 +23,32 @@ function get_san_pham($args){
   ?>
   <div class="item">
     <a class="khung_anh" data-lightbox="image-1" href="<?php the_post_thumbnail_url(); ?>" data-title=
-    "<div class='information col-md-12'>
-    <h1><?php the_title();?></h1>
-    <h6>Price: <?php $output = get_post_meta( get_the_ID(), 'price', true );
-      $price = number_format( $output,0,",",".");
-      setlocale(LC_MONETARY, 'vnd');
-      echo $price; ?>p</h6>
-      <p class='description_box'><?php the_excerpt(); ?></p>
-      <button type='button' class='btn btn-warning'><a href='<?php the_permalink();?>'>подробнее</a></button>
-    </div>">
-    <!-- img -->
-    <?php the_post_thumbnail() ;?>
+      "<div class='information col-md-12'>
+      <h1><?php the_title();?></h1>
+      <h6>Price: <?php $output = get_post_meta( get_the_ID(), 'price', true );
+        $price = number_format( $output,0,",",".");
+        setlocale(LC_MONETARY, 'vnd');
+        echo $price; ?>p</h6>
+        <p class='description_box'><?php the_excerpt(); ?></p>
+        <button type='button' class='btn btn-warning'><a href='<?php the_permalink();?>'>подробнее</a></button>
+      </div>">
+      <!-- img -->
+      <?php the_post_thumbnail() ;?>
 
-    <a href="<?php the_permalink();?>" class="col-md-8 col-md-offset-2 col-xs-12 name_glasses"><?php the_title();?></a>
-    <!-- gia -->
-    <p class="col-md-8 col-md-offset-2 price_glasses"><?php $output = get_post_meta( get_the_ID(), 'price', true );
-      $price = number_format( $output,0,",",".");
-      setlocale(LC_MONETARY, 'vnd');
-      echo $price; ?>p</p>
-    </a>
-  </div>
-  <?php
-  endwhile;
-  return $san_pham;
-} else{
-  return "<p style='text-align: center; font-size: 14px; padding-top: 15px;'>Không có dữ liệu hiển thị...</p>";
-}
+      <a href="<?php the_permalink();?>" class="col-md-8 col-md-offset-2 col-xs-12 name_glasses"><?php the_title();?></a>
+      <!-- gia -->
+      <p class="col-md-8 col-md-offset-2 price_glasses"><?php $output = get_post_meta( get_the_ID(), 'price', true );
+        $price = number_format( $output,0,",",".");
+        setlocale(LC_MONETARY, 'vnd');
+        echo $price; ?>p</p>
+      </a>
+    </div>
+    <?php
+    endwhile;
+    return $san_pham;
+  } else{
+    return "<p style='text-align: center; font-size: 14px; padding-top: 15px;'>Không có dữ liệu hiển thị...</p>";
+  }
 }
 
 // trinh soan thao
@@ -130,3 +130,20 @@ class T5_Richtext_Excerpt
     }
   }
 // end trinh soan thao
+// 
+// trinh soan thao typeM
+  function ilc_mce_buttons($buttons){
+    array_push($buttons,
+     "backcolor",
+     "anchor",
+     "hr",
+     "sub",
+     "sup",
+     "fontselect",
+     "fontsizeselect",
+     "styleselect",
+     "cleanup"
+     );
+    return $buttons;
+  }
+  add_filter("mce_buttons", "ilc_mce_buttons");
