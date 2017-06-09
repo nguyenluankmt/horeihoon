@@ -1,4 +1,7 @@
 <?php 
 /* Template name: FeaturedProducts */
  ?>
-Đây là trang FeaturedProducts
+ <?php get_header(); ?>
+
+ abc
+ <?php get_footer(); ?>
